@@ -1,12 +1,12 @@
 <?php
 
-namespace mxkh\dirinfo\contracts;
+namespace Mxkh\Dirinfo;
 
 /**
  * Interface Browser
  * @package mxkh\dirinfo
  */
-interface Browser
+interface BrowserInterface
 {
     public function setPath(string $path);
 
