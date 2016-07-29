@@ -109,7 +109,7 @@ class Directory implements Browser
      * @param FilesystemIterator $filesystemIterator
      * @return int
      */
-    protected function findDuplicateFiles(FilesystemIterator $filesystemIterator)
+    protected function findDuplicateFiles(FilesystemIterator $filesystemIterator):int
     {
         $this->files = [];
         foreach ($filesystemIterator as $file) {
@@ -127,7 +127,7 @@ class Directory implements Browser
      * @param array $files
      * @return int
      */
-    protected function countDuplicateFiles(array $files)
+    protected function countDuplicateFiles(array $files):int
     {
         $counter = 0;
         foreach (array_count_values($files) as $hash => $count) {
@@ -149,7 +149,7 @@ class Directory implements Browser
         RecursiveIteratorIterator $recursiveIteratorIterator,
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator
-    ) {
+    ):array {
 
         $sameFiles = $this->findDuplicateFiles($filesystemIterator);
 
@@ -175,7 +175,7 @@ class Directory implements Browser
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator,
         int $sameFiles
-    ) {
+    ):array {
         $this->directories[$recursiveDirectoryIterator->getBasename()] = [
             'size' => $recursiveDirectoryIterator->getSize(),
             'files' => iterator_count($filesystemIterator),
@@ -197,7 +197,7 @@ class Directory implements Browser
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator,
         int $sameFiles
-    ) {
+    ):array {
         $path = [
             $recursiveDirectoryIterator->getFilename() => [
                 'size' => $recursiveDirectoryIterator->getSize(),
