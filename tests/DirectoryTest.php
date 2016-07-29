@@ -31,11 +31,20 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->path, $this->directory->getPath());
     }
 
-    public function testDefaultPath(){
+    public function testDefaultPath()
+    {
         $this->directory->list();
 
         $this->assertNotEmpty($this->directory->getPath());
         $this->assertEquals(realpath(dirname(__DIR__)), $this->directory->getPath());
+    }
+
+    /**
+     * @expectedException \UnexpectedValueException
+     */
+    public function testWrongPath()
+    {
+        $this->directory->setPath('wrong/path/')->list();
     }
 
     public function testDirectoryToArray()
@@ -45,13 +54,15 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $output);
     }
 
-    public function testDirectoryToJson(){
+    public function testDirectoryToJson()
+    {
         $output = $this->directory->setPath($this->path)->toJson()->list();
 
         $this->assertJson($output);
     }
 
-    public function testDirectoryAsTree(){
+    public function testDirectoryAsTree()
+    {
         $output = $this->directory->setPath($this->path)->asTree()->list();
 
         $this->assertInternalType('array', $output);

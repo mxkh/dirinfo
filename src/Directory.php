@@ -6,6 +6,7 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
+use UnexpectedValueException;
 
 /**
  * Class Directory
@@ -76,12 +77,15 @@ class Directory implements BrowserInterface
             $this->setPath();
         }
 
-        $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($this->path, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::SELF_FIRST
-        );
-
-        return $this->directoryIterator($iterator);
+        try {
+            $iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($this->path, RecursiveDirectoryIterator::SKIP_DOTS),
+                RecursiveIteratorIterator::SELF_FIRST
+            );
+            return $this->directoryIterator($iterator);
+        } catch (UnexpectedValueException $e) {
+            throw $e;
+        }
     }
 
     /**
@@ -148,7 +152,8 @@ class Directory implements BrowserInterface
         RecursiveIteratorIterator $recursiveIteratorIterator,
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator
-    ):array {
+    ):array
+    {
 
         $sameFiles = $this->findDuplicateFiles($filesystemIterator);
 
@@ -174,7 +179,8 @@ class Directory implements BrowserInterface
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator,
         int $sameFiles
-    ):array {
+    ):array
+    {
         $this->directories[$recursiveDirectoryIterator->getBasename()] = [
             'size' => $recursiveDirectoryIterator->getSize(),
             'files' => iterator_count($filesystemIterator),
@@ -196,7 +202,8 @@ class Directory implements BrowserInterface
         SplFileInfo $recursiveDirectoryIterator,
         FilesystemIterator $filesystemIterator,
         int $sameFiles
-    ):array {
+    ):array
+    {
         $path = [
             $recursiveDirectoryIterator->getFilename() => [
                 'size' => $recursiveDirectoryIterator->getSize(),
