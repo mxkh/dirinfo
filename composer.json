@@ -1,16 +1,16 @@
 {
-  "name": "Directory browser",
-  "description": "Help browse directories",
+  "name": "mxkh/dirinfo",
+  "description": "Simple library to display info about directories",
   "type": "library",
   "support": {
-    "source": "https://bitbucket.org/umberfirm/yii2-catalog"
+    "source": "https://github.com/mxkh/dirinfo"
   },
   "require": {
     "php": ">=7.0.0"
   },
   "autoload": {
     "psr-4": {
-      "mxkh\\browser\\": "src/"
+      "mxkh\\dirinfo\\": "src/"
     }
   }
 }

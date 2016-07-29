@@ -1,10 +1,10 @@
 <?php
 
-namespace mxkh\browser\contracts;
+namespace mxkh\dirinfo\contracts;
 
 /**
  * Interface Browser
- * @package mxkh\browser
+ * @package mxkh\dirinfo
  */
 interface Browser
 {

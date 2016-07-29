@@ -1,7 +1,7 @@
 <?php
-namespace mxkh\browser\tests;
+namespace mxkh\dirinfo\tests;
 
-use mxkh\browser\Directory;
+use mxkh\dirinfo\Directory;
 
 class DirectoryTest extends \PHPUnit_Framework_TestCase
 {
