@@ -1,9 +1,9 @@
 <?php
 
-namespace mxkh\browser;
+namespace mxkh\dirinfo;
 
 use FilesystemIterator;
-use mxkh\browser\contracts\Browser;
+use mxkh\dirinfo\contracts\Browser;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
@@ -11,7 +11,7 @@ use SplFileInfo;
 /**
  * Class Directory
  *
- * @package mxkh\browser
+ * @package mxkh\dirinfo
  */
 class Directory implements Browser
 {
