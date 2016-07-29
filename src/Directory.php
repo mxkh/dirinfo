@@ -1,9 +1,8 @@
 <?php
 
-namespace mxkh\dirinfo;
+namespace Mxkh\Dirinfo;
 
 use FilesystemIterator;
-use mxkh\dirinfo\contracts\Browser;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
@@ -13,7 +12,7 @@ use SplFileInfo;
  *
  * @package mxkh\dirinfo
  */
-class Directory implements Browser
+class Directory implements BrowserInterface
 {
     /**
      * @var string

@@ -1,7 +1,7 @@
 <?php
-namespace mxkh\dirinfo\tests;
+namespace Mxkh\Dirinfo\Tests;
 
-use mxkh\dirinfo\Directory;
+use Mxkh\Dirinfo\Directory;
 
 class DirectoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,37 +23,37 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
         $this->path = './tests/data';
     }
 
-    public function test_directory_set_path()
+    public function testDirectorySetPath()
     {
         $this->directory->setPath($this->path);
 
-        static::assertNotEmpty($this->directory->getPath());
-        static::assertEquals($this->path, $this->directory->getPath());
+        $this->assertNotEmpty($this->directory->getPath());
+        $this->assertEquals($this->path, $this->directory->getPath());
     }
 
-    public function test_default_path(){
+    public function testDefaultPath(){
         $this->directory->list();
 
-        static::assertNotEmpty($this->directory->getPath());
-        static::assertEquals(realpath(dirname(__DIR__)), $this->directory->getPath());
+        $this->assertNotEmpty($this->directory->getPath());
+        $this->assertEquals(realpath(dirname(__DIR__)), $this->directory->getPath());
     }
 
-    public function test_directory_to_array()
+    public function testDirectoryToArray()
     {
         $output = $this->directory->setPath($this->path)->list();
 
-        static::assertInternalType('array', $output);
+        $this->assertInternalType('array', $output);
     }
 
-    public function test_directory_to_json(){
+    public function testDirectoryToJson(){
         $output = $this->directory->setPath($this->path)->toJson()->list();
 
-        static::assertJson($output);
+        $this->assertJson($output);
     }
 
-    public function test_directory_as_tree(){
+    public function testDirectoryAsTree(){
         $output = $this->directory->setPath($this->path)->asTree()->list();
 
-        static::assertInternalType('array', $output);
+        $this->assertInternalType('array', $output);
     }
 }
